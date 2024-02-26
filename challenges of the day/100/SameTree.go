@@ -4,110 +4,69 @@ import (
 	"fmt"
 )
 
-type node struct {
-	next  *node
-	value int
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
 }
 
-type linkedList struct {
-	head *node
-	size int
+type binaryTree struct {
+	root *TreeNode
 }
 
 // Given the roots of two binary trees p and q, write a function to check if they are the same or not.
-func isSameTree(p *node, q *node) bool {
-	if getSizeByRoot(p) != getSizeByRoot(q) {
+func isSameTree(p *TreeNode, q *TreeNode) bool {
+	pContent := recursiveDFSinorder(p)
+	qContent := recursiveDFSinorder(q)
+
+	if len(qContent) != len(pContent) {
 		return false
 	}
 
-	current := p
-	current2 := q
-
-	for current != nil && current2 != nil {
-		if current.value != current2.value {
+	for i := 0; i < len(qContent); i++ {
+		if pContent[i] != qContent[i] {
 			return false
 		}
-
-		current = current.next
-		current2 = current2.next
 	}
 
 	return true
 }
 
-func getSizeByRoot(root *node) int {
-	size := 0
-	current := root
-
-	for current != nil {
-		size++
-		current = current.next
-	}
-
-	return size
+func newNode(value int) *TreeNode {
+	return &TreeNode{value, nil, nil}
 }
 
-func (list *linkedList) addValue(value int) {
-	newNode := &node{nil, value}
+func recursiveDFSinorder(root *TreeNode) []int {
+	var result []int
 
-	if list.head == nil {
-		list.head = newNode
-	} else {
-		current := list.head
-		for current.next != nil {
-			current = current.next
-		}
-		current.next = newNode
+	if root != nil {
+		// Visita il sottoalbero sinistro
+		result = append(result, recursiveDFSinorder(root.Left)...)
+
+		// Aggiungi il valore del nodo corrente
+		result = append(result, root.Val)
+
+		// Visita il sottoalbero destro
+		result = append(result, recursiveDFSinorder(root.Right)...)
 	}
 
-	list.size++
-}
-
-func (list linkedList) getByIndex(index int) *node {
-	current := list.head
-
-	for current.next != nil && index > 0 {
-		current = current.next
-		index--
-	}
-
-	return current
-}
-
-func (list linkedList) printList() {
-	if list.size == 0 {
-		fmt.Println("[ ]\nEmpty list.")
-		return
-	}
-
-	fmt.Print("[ ", list.head.value)
-
-	current := list.head.next
-
-	for current != nil {
-		fmt.Print(", ", current.value)
-		current = current.next
-	}
-
-	fmt.Print(" ]")
-	fmt.Println()
+	return result
 }
 
 func main() {
-	tree1 := linkedList{nil, 0}
-	tree2 := linkedList{nil, 0}
+	tree1 := binaryTree{}
+	tree2 := binaryTree{}
 
-	tree1.addValue(1)
-	tree1.addValue(2)
-	tree1.addValue(3)
+	tree1.root = newNode(1)
+	tree1.root.Left = newNode(2)
+	tree1.root.Right = newNode(3)
 
-	tree2.addValue(1)
-	tree2.addValue(2)
-	tree2.addValue(3)
-	// tree2.addValue(4)
+	tree2.root = newNode(1)
+	tree2.root.Left = newNode(2)
+	tree2.root.Right = newNode(3)
 
-	tree1.printList()
-	tree2.printList()
+	fmt.Println(recursiveDFSinorder(tree1.root))
+	fmt.Println(recursiveDFSinorder(tree2.root))
 
-	fmt.Println(isSameTree(tree1.head, tree2.head))
+	fmt.Println(isSameTree(tree1.root, tree2.root))
 }
