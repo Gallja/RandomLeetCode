@@ -20,6 +20,7 @@ func newNode(value int) *TreeNode {
 
 // Given the roots of two binary trees p and q, write a function to check if they are the same or not.
 func isSameTree(p *TreeNode, q *TreeNode) bool {
+	// valuto i casi base
 	if p == nil && q == nil {
 		return true
 	}
