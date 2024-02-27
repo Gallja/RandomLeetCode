@@ -18,6 +18,7 @@ func newNode(value int) *TreeNode {
 
 // Given the root of a binary tree, return the length of the diameter of the tree.
 func diameterOfBinaryTree(root *TreeNode) int {
+	// caso base
 	if root == nil {
 		return 0
 	}
