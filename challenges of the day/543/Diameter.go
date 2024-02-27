@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 type TreeNode struct {
 	Val   int
@@ -8,40 +11,49 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-type binaryTree struct {
-	root *TreeNode
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
-func newNode(value int) *TreeNode {
-	return &TreeNode{value, nil, nil}
-}
-
-// Given the root of a binary tree, return the length of the diameter of the tree.
 func diameterOfBinaryTree(root *TreeNode) int {
-	// caso base
 	if root == nil {
 		return 0
 	}
 
-	leftHeight := diameterOfBinaryTree(root.Left)
-	rightHeight := diameterOfBinaryTree(root.Right)
+	leftHeight := height(root.Left)
+	rightHeight := height(root.Right)
 
-	if leftHeight > rightHeight {
-		return leftHeight + 1
-	} else {
-		return rightHeight + 1
+	// diametro
+	diameterThroughRoot := leftHeight + rightHeight
+
+	// diametro sx
+	leftDiameter := diameterOfBinaryTree(root.Left)
+
+	// diametro dx
+	rightDiameter := diameterOfBinaryTree(root.Right)
+
+	// max diametro
+	return max(diameterThroughRoot, max(leftDiameter, rightDiameter))
+}
+
+func height(node *TreeNode) int {
+	if node == nil {
+		return 0
 	}
+
+	// altezza massima tra sottoalbero sx e dx
+	return 1 + int(math.Max(float64(height(node.Left)), float64(height(node.Right))))
 }
 
 func main() {
-	tree := binaryTree{}
+	root := &TreeNode{Val: 1}
+	root.Left = &TreeNode{Val: 2}
+	root.Right = &TreeNode{Val: 3}
+	root.Left.Left = &TreeNode{Val: 4}
+	root.Left.Right = &TreeNode{Val: 5}
 
-	tree.root = newNode(1)
-	tree.root.Left = newNode(2)
-	tree.root.Right = newNode(3)
-	tree.root.Left.Left = newNode(4)
-	tree.root.Left.Right = newNode(5)
-	tree.root.Right.Left = newNode(6)
-
-	fmt.Println(diameterOfBinaryTree(tree.root))
+	fmt.Println(diameterOfBinaryTree(root))
 }
