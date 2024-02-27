@@ -11,6 +11,10 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
+type binaryTree struct {
+	root *TreeNode
+}
+
 func max(a, b int) int {
 	if a > b {
 		return a
