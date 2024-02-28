@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 func merge(nums1 []int, m int, nums2 []int, n int) {
 	newDim := n + m
@@ -10,8 +8,9 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	nums1 = append(nums1, make([]int, newDim-len(nums1))...)
 	copy(nums1[len(nums1)-len(nums2):], nums2)
 
+	mergeSort(nums1, 0, len(nums1)-1)
+
 	fmt.Println(nums1)
-	merge2(nums1, nums1[0], nums1[len(nums1)/2], nums1[len(nums1)-1])
 }
 
 func merge2(a []int, left, center, right int) {
