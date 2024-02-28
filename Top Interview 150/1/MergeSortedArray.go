@@ -13,6 +13,15 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 	fmt.Println(nums1)
 }
 
+func mergeSort(slice []int, left, right int) {
+	if left < right {
+		center := (left + right) / 2
+		mergeSort(slice, left, center)
+		mergeSort(slice, center+1, right)
+		merge2(slice, left, center, right)
+	}
+}
+
 func merge2(a []int, left, center, right int) {
 	i := left
 	j := center + 1
@@ -43,23 +52,14 @@ func merge2(a []int, left, center, right int) {
 		k++
 	}
 
-	for k = left; k < right; k++ {
+	for k = left; k <= right; k++ {
 		a[k] = b[k-left]
 	}
 }
 
-func mergeSort(slice []int, left, right int) {
-	if left < right {
-		center := (left + right) / 2
-		mergeSort(slice, left, center)
-		mergeSort(slice, center+1, right)
-		merge2(slice, left, center, right)
-	}
-}
-
 func main() {
-	nums1 := []int{1, 3, 5, 16}
-	nums2 := []int{7, 14, 99, 101, 104}
+	nums1 := []int{2, 0}
+	nums2 := []int{1}
 
 	merge(nums1, len(nums1), nums2, len(nums2))
 }
