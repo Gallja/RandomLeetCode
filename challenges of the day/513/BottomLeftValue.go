@@ -20,6 +20,7 @@ func newNode(value int) *TreeNode {
 
 // Given the root of a binary tree, return the leftmost value in the last row of the tree.
 func findBottomLeftValue(root *TreeNode) int {
+	// caso base
 	if root == nil {
 		return 0
 	}
@@ -34,6 +35,7 @@ func findBottomLeftValue(root *TreeNode) int {
 	leftDepth := maxDepth(root.Left)
 	rightDepth := maxDepth(root.Right)
 
+	// se il sotto-albero di dx ha profondità maggiore di quello sx, lo visito
 	if rightDepth > leftDepth {
 		return findBottomLeftValue(root.Right)
 	}
