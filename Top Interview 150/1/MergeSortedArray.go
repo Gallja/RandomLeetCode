@@ -9,6 +9,44 @@ func merge(nums1 []int, m int, nums2 []int, n int) {
 
 	nums1 = append(nums1, make([]int, newDim-len(nums1))...)
 	copy(nums1[len(nums1)-len(nums2):], nums2)
+
+	fmt.Println(nums1)
+	merge2(nums1, nums1[0], nums1[len(nums1)/2], nums1[len(nums1)-1])
+}
+
+func merge2(a []int, left, center, right int) {
+	i := left
+	j := center + 1
+	k := 0
+	b := make([]int, right-left+1)
+
+	for i <= center && j <= right {
+		if a[i] <= a[j] {
+			b[k] = a[i]
+			i++
+			k++
+		} else {
+			b[k] = a[j]
+			j++
+			k++
+		}
+	}
+
+	for i <= center {
+		b[k] = a[i]
+		i++
+		k++
+	}
+
+	for j <= right {
+		b[k] = a[j]
+		j++
+		k++
+	}
+
+	for k = left; k < right; k++ {
+		a[k] = b[k-left]
+	}
 }
 
 func main() {
@@ -17,5 +55,5 @@ func main() {
 
 	merge(nums1, len(nums1), nums2, len(nums2))
 
-	fmt.Println(nums1)
+	// fmt.Println(nums1)
 }
