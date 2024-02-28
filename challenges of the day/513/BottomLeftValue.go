@@ -24,7 +24,7 @@ func findBottomLeftValue(root *TreeNode) int {
 		return 0
 	}
 
-	if root.Left == nil {
+	if root.Left == nil && root.Right == nil {
 		return root.Val
 	}
 
@@ -59,13 +59,8 @@ func maxDepth(root *TreeNode) int {
 func main() {
 	tree := binaryTree{}
 
-	tree.root = newNode(1)
-	tree.root.Left = newNode(2)
-	tree.root.Left.Left = newNode(4)
-	tree.root.Right = newNode(3)
-	tree.root.Right.Left = newNode(5)
-	tree.root.Right.Left.Left = newNode(7)
-	tree.root.Right.Right = newNode(6)
+	tree.root = newNode(0)
+	tree.root.Right = newNode(-1)
 
 	fmt.Println(findBottomLeftValue(tree.root))
 }
