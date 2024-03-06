@@ -23,7 +23,6 @@ func (list *linkedList) add(value int) {
 
 	if list.head == nil {
 		list.head = newNode
-		fmt.Println(list.head)
 	} else {
 		current := list.head
 		for current.Next != nil {
@@ -54,8 +53,43 @@ func (list *linkedList) printList() {
 	fmt.Println(" ]")
 }
 
+func printListFromHead(head *ListNode) {
+	if head == nil {
+		fmt.Println("[ ]\nEmpty List...")
+		return
+	}
+
+	fmt.Print("[ ", head.Val)
+
+	curr := head.Next
+
+	for curr != nil {
+		fmt.Print(", ", curr.Val)
+		curr = curr.Next
+	}
+
+	fmt.Println(" ]")
+}
+
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	return nil
+	curr := l1
+	curr2 := l2
+
+	listRis := linkedList{nil, 0}
+
+	for curr != nil {
+		second := 0
+
+		if curr2 != nil {
+			second = curr2.Val
+		}
+
+		listRis.add(curr.Val + second)
+		curr = curr.Next
+		curr2 = curr2.Next
+	}
+
+	return listRis.head
 }
 
 func main() {
@@ -73,4 +107,6 @@ func main() {
 
 	list1.printList()
 	list2.printList()
+
+	printListFromHead(addTwoNumbers(list1.head, list2.head))
 }
