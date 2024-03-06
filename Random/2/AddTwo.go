@@ -72,61 +72,48 @@ func printListFromHead(head *ListNode) {
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
-	curr := l1
-	curr2 := l2
+	head := new(ListNode) // head "dummy" (fittizia)
+	curr := head
+	carry := 0
 
-	listRis := linkedList{nil, 0}
-	riporto := false
-	rest := 0
+	for l1 != nil || l2 != nil || carry > 0 {
+		sum := carry
 
-	for curr != nil {
-		second := 0
-
-		if curr2 != nil {
-			second = curr2.Val
+		if l1 != nil {
+			sum += l1.Val
+			l1 = l1.Next
 		}
 
-		if curr.Val+second > 9 {
-			rest = curr.Val / second
-
-			if rest == 0 {
-				rest = 1
-			}
-
-			second = (curr.Val + second) % 10
-			riporto = true
+		if l2 != nil {
+			sum += l2.Val
+			l2 = l2.Next
 		}
 
-		if riporto {
-			listRis.add(second)
-			riporto = false
-		} else {
-			listRis.add(curr.Val + second + rest)
-			rest = 0
-		}
-
+		curr.Next = &ListNode{sum % 10, nil}
 		curr = curr.Next
-
-		if curr2 != nil {
-			curr2 = curr2.Next
-		}
+		carry = sum / 10
 	}
 
-	return listRis.head
+	return head.Next
 }
 
 func main() {
 	list1 := linkedList{nil, 0}
 
-	list1.add(2)
-	list1.add(4)
-	list1.add(3)
+	list1.add(9)
+	list1.add(9)
+	list1.add(9)
+	list1.add(9)
+	list1.add(9)
+	list1.add(9)
+	list1.add(9)
 
 	list2 := linkedList{nil, 0}
 
-	list2.add(5)
-	list2.add(6)
-	list2.add(4)
+	list2.add(9)
+	list2.add(9)
+	list2.add(9)
+	list2.add(9)
 
 	list1.printList()
 	list2.printList()
