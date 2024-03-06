@@ -76,6 +76,8 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	curr2 := l2
 
 	listRis := linkedList{nil, 0}
+	riporto := false
+	rest := 0
 
 	for curr != nil {
 		second := 0
@@ -84,7 +86,20 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			second = curr2.Val
 		}
 
-		listRis.add(curr.Val + second)
+		if curr.Val+second > 9 {
+			rest = curr.Val / second
+			second = (curr.Val + second) % 10
+			riporto = true
+		}
+
+		if riporto {
+			listRis.add(second)
+			riporto = false
+		} else {
+			listRis.add(curr.Val + second + rest)
+			rest = 0
+		}
+
 		curr = curr.Next
 		curr2 = curr2.Next
 	}
