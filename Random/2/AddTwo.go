@@ -88,6 +88,11 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 		if curr.Val+second > 9 {
 			rest = curr.Val / second
+
+			if rest == 0 {
+				rest = 1
+			}
+
 			second = (curr.Val + second) % 10
 			riporto = true
 		}
@@ -101,7 +106,10 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 
 		curr = curr.Next
-		curr2 = curr2.Next
+
+		if curr2 != nil {
+			curr2 = curr2.Next
+		}
 	}
 
 	return listRis.head
