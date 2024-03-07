@@ -75,13 +75,7 @@ func middleNode(head *ListNode) *ListNode {
 	}
 
 	size := getSizeFromHead(head)
-	middle := 0
-
-	if size%2 == 0 {
-		middle = size / 2
-	} else {
-		middle = (size / 2) + 1
-	}
+	middle := (size / 2) + 1
 
 	cnt := 1
 	curr := head
@@ -102,6 +96,7 @@ func main() {
 	list.add(3)
 	list.add(4)
 	list.add(5)
+	list.add(6)
 
 	list.printList()
 
