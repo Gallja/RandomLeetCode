@@ -27,6 +27,9 @@ func customSortString(order string, s string) string {
 	return strOut
 }
 
+/*
+This function check if there are different characters between str1 and str2.
+*/
 func checkS(str1, str2 string) string {
 	isIn := false
 	strOut := ""
