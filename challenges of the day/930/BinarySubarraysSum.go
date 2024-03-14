@@ -37,10 +37,24 @@ func numSubarraysWithSum(nums []int, goal int) int {
 	return occorrenze
 }
 
+func formula(nums []int) int {
+	len := len(nums)
+	ris := 0
+
+	for len != 0 {
+		ris += len
+		len--
+	}
+
+	return ris
+}
+
 func main() {
 	nums := []int{0, 0, 0, 0, 0}
 	fmt.Println(numSubarraysWithSum(nums, 0))
 
 	nums2 := []int{1, 0, 1, 0, 1}
 	fmt.Println(numSubarraysWithSum(nums2, 2))
+
+	fmt.Println(formula(nums))
 }
