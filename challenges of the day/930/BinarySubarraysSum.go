@@ -9,7 +9,7 @@ Given a binary array nums and an integer goal, return the number of non-empty su
 
 A subarray is a contiguous part of the array.
 */
-func numSubarraysWithSum(nums []int, goal int) int {
+func subArray(nums []int, goal int) int {
 	curr := 0
 	ris := 0
 
@@ -26,11 +26,11 @@ func numSubarraysWithSum(nums []int, goal int) int {
 	return ris
 }
 
-func subArray(nums []int, goal int) int {
+func numSubarraysWithSum(nums []int, goal int) int {
 	occorrenze := 0
 
 	for len(nums) != 0 {
-		occorrenze += numSubarraysWithSum(nums, goal)
+		occorrenze += subArray(nums, goal)
 		nums = nums[1:]
 	}
 
@@ -39,8 +39,8 @@ func subArray(nums []int, goal int) int {
 
 func main() {
 	nums := []int{0, 0, 0, 0, 0}
-	fmt.Println(subArray(nums, 0))
+	fmt.Println(numSubarraysWithSum(nums, 0))
 
 	nums2 := []int{1, 0, 1, 0, 1}
-	fmt.Println(subArray(nums2, 2))
+	fmt.Println(numSubarraysWithSum(nums2, 2))
 }
