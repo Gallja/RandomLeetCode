@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 type queueNode struct {
@@ -125,8 +126,64 @@ func openLock(deadends []string, target string) int {
 }
 
 func searchAdjacent(start string) []string {
+	slice := stringToIntArray(start)
+	fmt.Println(slice)
+
+	first1 := slice[0]
+	first1++
+	first1 = checkRis(first1)
+
+	first2 := slice[0]
+	first2--
+	first2 = checkRis(first2)
+
+	sec1 := slice[1]
+	sec1++
+	sec1 = checkRis(sec1)
+
+	sec2 := slice[1]
+	sec2++
+	sec2 = checkRis(sec2)
+
+	third1 := slice[2]
+	third1++
+	third1 = checkRis(third1)
+
+	third2 := slice[2]
+	third2++
+	third2 = checkRis(third2)
+
+	fourth1 := slice[3]
+	fourth1++
+	fourth1 = checkRis(fourth1)
+
+	fourth2 := slice[3]
+	fourth2++
+	fourth2 = checkRis(fourth2)
 
 	return nil
+}
+
+func stringToIntArray(s string) []int {
+	var result []int
+	for _, c := range s {
+		if num, err := strconv.Atoi(string(c)); err == nil {
+			result = append(result, num)
+		}
+	}
+	return result
+}
+
+func checkRis(num int) int {
+	if num == -1 {
+		return 9
+	}
+
+	if num == 10 {
+		return 0
+	}
+
+	return num
 }
 
 func main() {
@@ -141,5 +198,7 @@ func main() {
 	deadends := []string{"0201", "0101", "0102", "1212", "2002"}
 
 	fmt.Println(bfs(deadends, graph, "0300"))
-	fmt.Println(openLock(deadends, "0202"))
+	// fmt.Println(openLock(deadends, "0202"))
+
+	searchAdjacent("0000")
 }
