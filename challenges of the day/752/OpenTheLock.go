@@ -6,7 +6,7 @@ import (
 
 type node struct {
 	next  *node
-	value []int
+	value []string
 }
 
 type queue struct {
@@ -14,7 +14,7 @@ type queue struct {
 	last *node
 }
 
-func (q *queue) enqueue(value []int) {
+func (q *queue) enqueue(value []string) {
 	newNode := &node{nil, value}
 
 	if q.head == nil && q.last == nil {
@@ -47,6 +47,14 @@ func (q queue) isEmpty() bool {
 }
 
 func main() {
-	fmt.Println("prova")
+	var queue queue
+	slice1 := []string{"0", "0", "0", "0"}
+	slice2 := []string{"1", "0", "1", "1"}
 
+	fmt.Println(queue.isEmpty())
+	fmt.Println()
+
+	queue.enqueue(slice1)
+	queue.enqueue(slice2)
+	fmt.Println(queue.isEmpty())
 }
