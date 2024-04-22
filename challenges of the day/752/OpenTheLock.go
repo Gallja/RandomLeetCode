@@ -91,8 +91,6 @@ func contains(slice []string, val string) bool {
 }
 
 func openLock(deadends []string, target string) int {
-	g := newGraph()
-
 	start := "0000"
 
 	queue := queue{nil}
@@ -107,16 +105,16 @@ func openLock(deadends []string, target string) int {
 
 		adjacent := searchAdjacent(u)
 
-		for _, v := adjacent {
-			if _, reached := distances[v]; !reached {
-				if !contains(deadends, v) {
-					distances[v] = distances[u] + 1
+		for i := 0; i < len(adjacent); i++ {
+			if _, reached := distances[adjacent[i]]; !reached {
+				if !contains(deadends, adjacent[i]) {
+					distances[adjacent[i]] = distances[u] + 1
 
-					if v == target {
-						val = distances[v]
+					if adjacent[i] == target {
+						val = distances[adjacent[i]]
 					}
 
-					queue.enqueue(v)
+					queue.enqueue(adjacent[i])
 				}
 			}
 		}
