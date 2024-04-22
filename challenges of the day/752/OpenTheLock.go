@@ -49,7 +49,24 @@ func newGraph() graph {
 }
 
 func bfs(g graph, start string) map[string]int {
-	return nil
+	queue := queue{nil}
+	distances := make(map[string]int)
+	distances[start] = 0
+
+	queue.enqueue(start)
+
+	for !queue.isEmpty() {
+		u := queue.dequeue()
+
+		for _, v := range g.map_[u] {
+			if _, reached := distances[v]; !reached {
+				distances[v] = distances[u] + 1
+				queue.enqueue(v)
+			}
+		}
+	}
+
+	return distances
 }
 
 func main() {
