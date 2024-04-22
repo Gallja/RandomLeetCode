@@ -4,60 +4,54 @@ import (
 	"fmt"
 )
 
-type node struct {
-	next  *node
+type queueNode struct {
+	next  *queueNode
 	value string
 }
 
 type queue struct {
-	head *node
-	last *node
+	head *queueNode
 }
 
 type graph struct {
+	map_ map[string][]string
 }
 
 func (q *queue) enqueue(value string) {
-	newNode := &node{nil, value}
-
-	if q.head == nil && q.last == nil {
-		q.head = newNode
-		q.last = newNode
+	if q.head == nil {
+		q.head = &queueNode{nil, value}
 		return
 	}
 
-	q.last.next = newNode
-	q.last = newNode
+	node := q.head
+
+	for node.next != nil {
+		node = node.next
+	}
+
+	newNode := queueNode{nil, value}
+	node.next = &newNode
 }
 
-func (q *queue) dequeue() *node {
-	if q.head == nil && q.last == nil {
-		return nil
-	}
+func (q *queue) dequeue() string {
+	head := q.head
+	q.head = q.head.next
 
-	node := q.head
-	if q.head == q.last {
-		q.head = nil
-		q.last = nil
-	}
-
-	q.head = node.next
-	return node
+	return head.value
 }
 
 func (q queue) isEmpty() bool {
 	return q.head == nil
 }
 
+func newGraph() graph {
+	return graph{make(map[string][]string)}
+}
+
+func bfs(g graph, start string) map[string]int {
+	return nil
+}
+
 func main() {
-	var queue queue
-	slice1 := "0 0 0 0"
-	slice2 := "1 0 1 1"
-
-	fmt.Println(queue.isEmpty())
 	fmt.Println()
-
-	queue.enqueue(slice1)
-	queue.enqueue(slice2)
-	fmt.Println(queue.isEmpty())
 }
