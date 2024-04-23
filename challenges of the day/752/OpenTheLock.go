@@ -49,6 +49,7 @@ func newGraph() graph {
 	return graph{make(map[string][]string)}
 }
 
+// bfs with graph
 func bfs(deadends []string, g graph, target string) (map[string]int, int) {
 	start := "0000"
 
@@ -91,6 +92,7 @@ func contains(slice []string, val string) bool {
 	return false
 }
 
+// bfs with abstract graph
 func openLock(deadends []string, target string) int {
 	start := "0000"
 
