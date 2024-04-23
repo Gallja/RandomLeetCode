@@ -106,7 +106,7 @@ func openLock(deadends []string, target string) int {
 	for !queue.isEmpty() {
 		u := queue.dequeue()
 
-		adjacent := searchAdjacent(u)
+		adjacent := searchAdjacent2(u)
 
 		for i := 0; i < len(adjacent); i++ {
 			if _, reached := distances[adjacent[i]]; !reached {
@@ -127,6 +127,7 @@ func openLock(deadends []string, target string) int {
 	return val
 }
 
+// search adjacent brute force
 func searchAdjacent(start string) []string {
 	slice := stringToIntArray(start)
 	ris := []string{}
@@ -190,6 +191,24 @@ func searchAdjacent(start string) []string {
 	str = intToStringArray(slice)
 	slice[3] = tmp
 	ris = append(ris, str)
+
+	return ris
+}
+
+// search adjacent with iteration
+func searchAdjacent2(start string) []string {
+	slice := stringToIntArray(start)
+	ris := []string{}
+
+	for i := 0; i < len(slice); i++ {
+		tmp := slice[i]
+		for j := -1; j <= 1; j += 2 {
+			slice[i] = checkRis(tmp + j)
+			str := intToStringArray(slice)
+			ris = append(ris, str)
+			slice[i] = tmp
+		}
+	}
 
 	return ris
 }
