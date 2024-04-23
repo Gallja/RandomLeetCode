@@ -127,41 +127,69 @@ func openLock(deadends []string, target string) int {
 
 func searchAdjacent(start string) []string {
 	slice := stringToIntArray(start)
-	fmt.Println(slice)
+	ris := []string{}
 
 	first1 := slice[0]
-	first1++
-	first1 = checkRis(first1)
+	tmp := slice[0]
+	first1 = checkRis(first1 + 1)
+	slice[0] = first1
+	str := intToStringArray(slice)
+	slice[0] = tmp
+	ris = append(ris, str)
 
 	first2 := slice[0]
-	first2--
-	first2 = checkRis(first2)
+	first2 = checkRis(first2 - 1)
+	slice[0] = first2
+	str = intToStringArray(slice)
+	slice[0] = tmp
+	ris = append(ris, str)
 
 	sec1 := slice[1]
-	sec1++
-	sec1 = checkRis(sec1)
+	tmp = slice[1]
+	sec1 = checkRis(sec1 + 1)
+	slice[1] = sec1
+	str = intToStringArray(slice)
+	slice[1] = tmp
+	ris = append(ris, str)
 
 	sec2 := slice[1]
-	sec2++
-	sec2 = checkRis(sec2)
+	sec2 = checkRis(sec2 - 1)
+	slice[1] = sec2
+	str = intToStringArray(slice)
+	slice[1] = tmp
+	ris = append(ris, str)
 
 	third1 := slice[2]
-	third1++
-	third1 = checkRis(third1)
+	tmp = slice[2]
+	third1 = checkRis(third1 + 1)
+	slice[2] = third1
+	str = intToStringArray(slice)
+	slice[2] = tmp
+	ris = append(ris, str)
 
 	third2 := slice[2]
-	third2++
-	third2 = checkRis(third2)
+	third2 = checkRis(third2 - 1)
+	slice[2] = third2
+	str = intToStringArray(slice)
+	slice[2] = tmp
+	ris = append(ris, str)
 
 	fourth1 := slice[3]
-	fourth1++
-	fourth1 = checkRis(fourth1)
+	tmp = slice[3]
+	fourth1 = checkRis(fourth1 + 1)
+	slice[3] = fourth1
+	str = intToStringArray(slice)
+	slice[3] = tmp
+	ris = append(ris, str)
 
 	fourth2 := slice[3]
-	fourth2++
-	fourth2 = checkRis(fourth2)
+	fourth2 = checkRis(fourth2 - 1)
+	slice[3] = fourth2
+	str = intToStringArray(slice)
+	slice[3] = tmp
+	ris = append(ris, str)
 
-	return nil
+	return ris
 }
 
 func stringToIntArray(s string) []int {
@@ -172,6 +200,16 @@ func stringToIntArray(s string) []int {
 		}
 	}
 	return result
+}
+
+func intToStringArray(slice []int) string {
+	ris := ""
+
+	for i := 0; i < len(slice); i++ {
+		ris += strconv.Itoa(slice[i])
+	}
+
+	return ris
 }
 
 func checkRis(num int) int {
@@ -198,7 +236,5 @@ func main() {
 	deadends := []string{"0201", "0101", "0102", "1212", "2002"}
 
 	fmt.Println(bfs(deadends, graph, "0300"))
-	// fmt.Println(openLock(deadends, "0202"))
-
-	searchAdjacent("0000")
+	fmt.Println(openLock(deadends, "0202"))
 }
