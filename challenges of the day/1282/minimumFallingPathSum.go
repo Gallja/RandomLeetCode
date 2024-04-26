@@ -25,7 +25,7 @@ func minFallingPathSum(grid [][]int) int {
 			// Find the minimum sum from the previous row excluding the cell above
 			prevMin := math.MaxInt32
 			for i := 0; i < n; i++ {
-				if i != x {
+				if i != x { // the only restriction of the problem: we can't move directly down (same column in adjacent rows).
 					prevMin = min(prevMin, dp[y-1][i])
 				}
 			}
