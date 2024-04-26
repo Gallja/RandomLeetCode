@@ -17,6 +17,8 @@ func minFallingPathSum(grid [][]int) int {
 		dp[0][i] = grid[0][i]
 	}
 
+	// fmt.Println(dp)
+
 	// Iterate through the grid from the second row
 	for y := 1; y < m; y++ {
 		for x := 0; x < n; x++ {
@@ -30,6 +32,8 @@ func minFallingPathSum(grid [][]int) int {
 			dp[y][x] = grid[y][x] + prevMin
 		}
 	}
+
+	fmt.Println(dp)
 
 	// Find the minimum element in the last row
 	minSum := math.MaxInt32
