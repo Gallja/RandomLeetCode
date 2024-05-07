@@ -51,8 +51,71 @@ func (list *LinkedList) printList() {
 }
 
 func doubleIt(head *ListNode) *ListNode {
+	listRet := LinkedList{nil, 0}
+
+	if head.Val >= 5 {
+
+		return listRet.head
+	}
+
+	curr := head
+	curr2 := head.Next
+
+	listRet.add(curr.Val * 2)
+	pointerPrec := listRet.getByIndex(0)
+	index := 1
+
+	for curr2 != nil {
+		if curr2.Val*2 >= 10 {
+			firstNum := (curr2.Val * 2) % 10
+			secondNum := (curr2.Val * 2) / 10
+
+			// fmt.Println("primo:", firstNum)
+			// fmt.Println("secondo:", secondNum)
+			// modifica della linked list in base ai risultati di firstNum e secondNum:
+			listRet.add(firstNum)
+			// fmt.Println(index)
+			index--
+			pointerPrec = listRet.getByIndex(index)
+			pointerPrec.Val += secondNum
+			index += 2
+		} else {
+			listRet.add(curr2.Val * 2)
+			pointerPrec = listRet.getByIndex(index)
+			index++
+		}
+
+		curr2 = curr2.Next
+	}
+
+	listRet.printList()
+
+	return listRet.head
+}
+
+func (list LinkedList) getByValue(value int) *ListNode {
+	current := list.head
+
+	for current.Next != nil {
+		if current.Val == value {
+			return current
+		}
+
+		current = current.Next
+	}
 
 	return nil
+}
+
+func (list LinkedList) getByIndex(index int) *ListNode {
+	current := list.head
+
+	for current != nil && index > 0 {
+		current = current.Next
+		index--
+	}
+
+	return current
 }
 
 func intToSlice(n int) []int {
@@ -70,10 +133,9 @@ func intToSlice(n int) []int {
 func main() {
 	list := LinkedList{nil, 0}
 
-	list.add(9)
-	list.add(1)
-	list.add(9)
+	list.add(4)
 	list.add(5)
+	list.add(7)
 
 	list.printList()
 
