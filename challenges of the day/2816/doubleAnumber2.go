@@ -52,26 +52,51 @@ func (list *LinkedList) printList() {
 
 func doubleIt(head *ListNode) *ListNode {
 	listRet := LinkedList{nil, 0}
+	curr := head
+	curr2 := head.Next
+	index := 1
 
 	if head.Val >= 5 {
+		firstNum := (curr.Val * 2) % 10
+		secondNum := (curr.Val * 2) / 10
+
+		listRet.add(firstNum)
+		listRet.add(secondNum)
+
+		pointerPrec := listRet.getByIndex(1)
+
+		for curr2 != nil {
+			if curr2.Val*2 >= 10 {
+				firstNum = (curr2.Val * 2) % 10
+				secondNum = (curr2.Val * 2) / 10
+
+				listRet.add(firstNum)
+				index--
+				pointerPrec = listRet.getByIndex(index)
+				pointerPrec.Val += secondNum
+				index += 2
+			} else {
+				listRet.add(curr2.Val * 2)
+				pointerPrec = listRet.getByIndex(index)
+				index++
+			}
+
+			curr2 = curr2.Next
+		}
+
+		listRet.printList()
 
 		return listRet.head
 	}
 
-	curr := head
-	curr2 := head.Next
-
 	listRet.add(curr.Val * 2)
 	pointerPrec := listRet.getByIndex(0)
-	index := 1
 
 	for curr2 != nil {
 		if curr2.Val*2 >= 10 {
 			firstNum := (curr2.Val * 2) % 10
 			secondNum := (curr2.Val * 2) / 10
 
-			// fmt.Println("primo:", firstNum)
-			// fmt.Println("secondo:", secondNum)
 			// modifica della linked list in base ai risultati di firstNum e secondNum:
 			listRet.add(firstNum)
 			index--
@@ -145,6 +170,8 @@ func main() {
 	list2.add(5)
 	list2.add(4)
 	list2.add(2)
+
+	list2.printList()
 
 	doubleIt(list2.head)
 }
