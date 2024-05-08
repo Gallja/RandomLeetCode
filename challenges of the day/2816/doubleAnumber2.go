@@ -60,8 +60,8 @@ func doubleIt(head *ListNode) *ListNode {
 		firstNum := (curr.Val * 2) % 10
 		secondNum := (curr.Val * 2) / 10
 
-		listRet.add(firstNum)
 		listRet.add(secondNum)
+		listRet.add(firstNum)
 
 		pointerPrec := listRet.getByIndex(1)
 
@@ -78,7 +78,8 @@ func doubleIt(head *ListNode) *ListNode {
 			} else {
 				listRet.add(curr2.Val * 2)
 				pointerPrec = listRet.getByIndex(index)
-				index++
+				fmt.Println(pointerPrec.Val)
+				index += 2
 			}
 
 			curr2 = curr2.Next
@@ -167,9 +168,9 @@ func main() {
 
 	list2 := LinkedList{nil, 0}
 
-	list2.add(5)
+	list2.add(8)
 	list2.add(4)
-	list2.add(2)
+	list2.add(5)
 
 	list2.printList()
 
