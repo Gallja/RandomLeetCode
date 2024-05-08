@@ -138,5 +138,13 @@ func main() {
 
 	list.printList()
 
-	fmt.Println(doubleIt(list.head))
+	doubleIt(list.head)
+
+	list2 := LinkedList{nil, 0}
+
+	list2.add(5)
+	list2.add(4)
+	list2.add(2)
+
+	doubleIt(list2.head)
 }
