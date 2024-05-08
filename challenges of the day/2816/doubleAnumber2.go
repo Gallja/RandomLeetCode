@@ -74,7 +74,6 @@ func doubleIt(head *ListNode) *ListNode {
 			// fmt.Println("secondo:", secondNum)
 			// modifica della linked list in base ai risultati di firstNum e secondNum:
 			listRet.add(firstNum)
-			// fmt.Println(index)
 			index--
 			pointerPrec = listRet.getByIndex(index)
 			pointerPrec.Val += secondNum
