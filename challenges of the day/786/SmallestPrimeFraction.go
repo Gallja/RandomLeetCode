@@ -27,13 +27,13 @@ func kthSmallestPrimeFraction(arr []int, k int) []int {
 	}
 
 	// ordina arr2
-	fmt.Println(arr2)
+	// fmt.Println(arr2)
 	arrFloat := componiArrFloat(arr2)
-	fmt.Println(arrFloat)
+	// fmt.Println(arrFloat)
 
 	bubbleSort(arrFloat, arr2)
-	fmt.Println(arrFloat)
-	fmt.Println(arr2)
+	// fmt.Println(arrFloat)
+	// fmt.Println(arr2)
 
 	// estrai arr2[k]
 	ritorno := arr2[k-1]
