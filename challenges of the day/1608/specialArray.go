@@ -10,11 +10,8 @@ func specialArray(nums []int) int {
 
 	for i := 0; i < len(nums); i++ {
 
-		for j := 0; j < i; j++ {
-			if nums[i] < i {
-				special = false
-				break
-			}
+		if nums[i] < i {
+			special = false
 		}
 
 		if special {
@@ -22,7 +19,7 @@ func specialArray(nums []int) int {
 		}
 	}
 
-	if x == 0 {
+	if x == 0 || x == 1 {
 		return -1
 	}
 
@@ -38,4 +35,7 @@ func main() {
 
 	nums3 := []int{0, 4, 3, 0, 4}
 	fmt.Println(specialArray(nums3))
+
+	nums4 := []int{3, 6, 7, 7, 0}
+	fmt.Println(specialArray(nums4))
 }
