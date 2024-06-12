@@ -47,5 +47,7 @@ func merge(left, right []int) []int {
 func main() {
 	nums := []int{2, 0, 2, 1, 1, 0}
 
-	fmt.Println(sortColors(nums))
+	sortColors(nums)
+
+	fmt.Println(nums)
 }
