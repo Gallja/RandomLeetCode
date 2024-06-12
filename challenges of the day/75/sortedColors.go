@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+// MERGE SORT algorithm:
+// worst case: O(n * log n)
+// best case: θ(n * log n)
+// general time complexity: θ(n * log n)
 func sortColors(nums []int) {
 	if len(nums) <= 1 {
 		return
