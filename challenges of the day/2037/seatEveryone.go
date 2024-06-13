@@ -15,6 +15,18 @@ func minMovesToSeat(seats []int, students []int) int {
 		return students[i] < students[j]
 	})
 
+	for i := 0; i < len(seats); i++ {
+		if seats[i] != students[i] {
+			movesTmp := seats[i] - students[i]
+
+			if movesTmp < 0 {
+				movesTmp *= -1
+			}
+
+			moves += movesTmp
+		}
+	}
+
 	return moves
 }
 
