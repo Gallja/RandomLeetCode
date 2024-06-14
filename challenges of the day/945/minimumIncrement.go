@@ -28,4 +28,8 @@ func main() {
 	nums := []int{1, 2, 2}
 
 	fmt.Println(minIncrementForUnique(nums))
+
+	nums2 := []int{3, 2, 1, 2, 1, 7}
+
+	fmt.Println(minIncrementForUnique(nums2))
 }
