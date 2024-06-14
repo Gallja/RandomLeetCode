@@ -5,6 +5,8 @@ import (
 	"sort"
 )
 
+// This function's right, but time complexity's O(n^2)
+// This solution is not acceptable
 func minIncrementForUnique(nums []int) int {
 	moves := 0
 
@@ -24,6 +26,8 @@ func minIncrementForUnique(nums []int) int {
 	return moves
 }
 
+// This is the new version of minIncrementForUnique function
+// Time complexity's less than O(n^2) and it is an acceptable solution
 func minIncrementForUnique2(nums []int) int {
 	moves := 0
 
