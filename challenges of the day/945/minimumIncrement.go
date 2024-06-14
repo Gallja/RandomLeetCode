@@ -4,6 +4,12 @@ import (
 	"fmt"
 )
 
+func minIncrementForUnique(nums []int) int {
+	return 0
+}
+
 func main() {
-	fmt.Println("new challenge")
+	nums := []int{1, 2, 2}
+
+	fmt.Println(minIncrementForUnique(nums))
 }
