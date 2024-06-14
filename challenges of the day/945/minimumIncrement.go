@@ -31,20 +31,18 @@ func minIncrementForUnique2(nums []int) int {
 		return nums[i] < nums[j]
 	})
 
-	fmt.Println(nums)
-
 	for i := 0; i < len(nums)-1; i++ {
 		if nums[i] >= nums[i+1] {
-			nums[i+1]++
-			moves++
-			if nums[i] == nums[i+1] {
+			for nums[i+1] <= nums[i] {
 				nums[i+1]++
 				moves++
+				if nums[i] == nums[i+1] {
+					nums[i+1]++
+					moves++
+				}
 			}
 		}
 	}
-
-	fmt.Println(nums)
 
 	return moves
 }
@@ -61,4 +59,7 @@ func main() {
 
 	nums4 := []int{1, 2, 2}
 	fmt.Println(minIncrementForUnique2(nums4))
+
+	nums5 := []int{2, 2, 2, 2, 0}
+	fmt.Println(minIncrementForUnique2(nums5))
 }
