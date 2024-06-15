@@ -32,7 +32,6 @@ func pop(maxheap *heap) int {
 
 func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 	coppie := make([]coppia, len(profits))
-	maxHeap := &heap{}
 
 	for i := 0; i < len(profits); i++ {
 		coppie[i] = coppia{capital[i], profits[i]}
@@ -43,6 +42,7 @@ func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 	})
 
 	j := 0
+	maxHeap := &heap{}
 
 	for k > 0 {
 		for j < len(profits) && w >= coppie[j].capitale {
