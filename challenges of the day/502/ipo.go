@@ -38,13 +38,9 @@ func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 		coppie[i] = coppia{capital[i], profits[i]}
 	}
 
-	fmt.Println(coppie)
-
 	sort.Slice(coppie, func(i, j int) bool {
 		return coppie[i].capitale < coppie[j].capitale
 	})
-
-	fmt.Println(coppie)
 
 	for k > 0 {
 		for j := 0; j < len(profits) && w >= coppie[j].capitale; j++ {
