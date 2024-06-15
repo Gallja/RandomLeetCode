@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 type coppia struct {
@@ -37,11 +38,9 @@ func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 		coppie[i] = coppia{capital[i], profits[i]}
 	}
 
-	/*
-		sort.Slice(coppie, func(i, j int) bool {
-			return coppie[i].capitale < coppie[j].capitale
-		})
-	*/
+	sort.Slice(coppie, func(i, j int) bool {
+		return coppie[i].capitale < coppie[j].capitale
+	})
 
 	j := 0
 
