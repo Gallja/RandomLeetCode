@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 type coppia struct {
-	primo   int
-	secondo int
+	capitale int
+	profitto int
 }
 
 type heap []int
@@ -37,9 +38,17 @@ func findMaximizedCapital(k int, w int, profits []int, capital []int) int {
 		coppie[i] = coppia{capital[i], profits[i]}
 	}
 
+	fmt.Println(coppie)
+
+	sort.Slice(coppie, func(i, j int) bool {
+		return coppie[i].capitale < coppie[j].capitale
+	})
+
+	fmt.Println(coppie)
+
 	for k > 0 {
-		for j := 0; j < len(profits) && w >= coppie[j].primo; j++ {
-			push(maxHeap, coppie[j].secondo)
+		for j := 0; j < len(profits) && w >= coppie[j].capitale; j++ {
+			push(maxHeap, coppie[j].profitto)
 		}
 
 		if lenHeap(*maxHeap) == 0 {
@@ -58,7 +67,13 @@ func main() {
 	w := 0
 	profits := []int{1, 2, 3}
 	capital := []int{0, 1, 1}
-
 	fmt.Println(findMaximizedCapital(k, w, profits, capital))
 
+	k2 := 3
+	w2 := 0
+	profits2 := []int{1, 2, 3}
+	capital2 := []int{0, 1, 2}
+	fmt.Println(findMaximizedCapital(k2, w2, profits2, capital2))
+
+	fmt.Println(findMaximizedCapital(10, w, profits, capital2))
 }
