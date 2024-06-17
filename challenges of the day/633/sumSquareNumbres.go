@@ -18,8 +18,6 @@ func judgeSquareSum(c int) bool {
 				return true
 			}
 
-			// fmt.Println(cnt, num2)
-
 			num2++
 		}
 
