@@ -10,10 +10,10 @@ func judgeSquareSum(c int) bool {
 	cnt := 0
 	num2 := cnt + 1
 
-	for cnt < c {
-		num2 = cnt + 1
+	for cnt <= c {
+		num2 = cnt
 
-		for num2 < c {
+		for num2 <= c {
 			if math.Pow(float64(cnt), 2)+math.Pow(float64(num2), 2) == float64(c) {
 				return true
 			}
@@ -35,4 +35,6 @@ func main() {
 	fmt.Println(judgeSquareSum(3))
 
 	fmt.Println(judgeSquareSum(4))
+
+	fmt.Println(judgeSquareSum(2))
 }
