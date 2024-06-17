@@ -7,7 +7,7 @@ import (
 
 func judgeSquareSum(c int) bool {
 	squareOk := false
-	cnt := 1
+	cnt := 0
 	num2 := cnt + 1
 
 	for cnt < c {
@@ -17,7 +17,8 @@ func judgeSquareSum(c int) bool {
 			if math.Pow(float64(cnt), 2)+math.Pow(float64(num2), 2) == float64(c) {
 				return true
 			}
-			// fmt.Println(math.Pow(float64(cnt), 2) + math.Pow(float64(num2), 2))
+
+			// fmt.Println(cnt, num2)
 
 			num2++
 		}
@@ -30,4 +31,8 @@ func judgeSquareSum(c int) bool {
 
 func main() {
 	fmt.Println(judgeSquareSum(5))
+
+	fmt.Println(judgeSquareSum(3))
+
+	fmt.Println(judgeSquareSum(4))
 }
