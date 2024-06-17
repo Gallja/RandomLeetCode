@@ -127,6 +127,7 @@ func openLock(deadends []string, target string) int {
 	return val
 }
 
+/*
 // search adjacent brute force
 func searchAdjacent(start string) []string {
 	slice := stringToIntArray(start)
@@ -194,6 +195,7 @@ func searchAdjacent(start string) []string {
 
 	return ris
 }
+	*/
 
 // search adjacent with iteration
 func searchAdjacent2(start string) []string {
