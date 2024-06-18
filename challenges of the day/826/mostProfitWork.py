@@ -24,15 +24,6 @@ class Solution(object):
             
         return maxProfit
 
-
-def generaCoppie(difficulty, profit):
-    coppie = []
-
-    for i in range(len(difficulty)):
-        coppie.append(Coppia(difficulty[i], profit[i]))
-
-    return coppie
-
 difficulty = [2, 4, 6, 8, 10]
 profit = [10, 20, 30, 40, 50]
 worker = [4, 5, 6, 7]
