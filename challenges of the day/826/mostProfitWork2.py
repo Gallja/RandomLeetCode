@@ -6,15 +6,15 @@ class Solution(object):
     def maxProfitAssignment(self, difficulty, profit, worker):
         worker.sort()
 
-        coppie = list(zip(difficulty, profit))
-        coppie.sort(key=lambda x : x[1], reverse=True)
+        coppie = zip(difficulty, profit)
+        coppie = sorted(coppie, key=lambda x : x[1], reverse=True) 
 
         maxProfit = 0
 
-        for i in range(len(worker)):
-            for j in range(len(coppie)):
-                if coppie[j][0] <= worker[i]:
-                    maxProfit += coppie[j][1]
+        for work in worker:
+            for elem in coppie:
+                if elem[0] <= work:
+                    maxProfit += elem[1]
                     break    
             
         return maxProfit
