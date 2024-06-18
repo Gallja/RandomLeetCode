@@ -6,13 +6,22 @@ class Solution(object):
         coppie.sort(key=lambda x : x[0])
 
         maxProfit = 0
-        # print(coppie)
 
         for i in range(len(worker)):
+            newProfit = False
+            profitTmp = 0
             for j in range(len(coppie)):
                 if coppie[j][0] <= worker[i]:
-                    maxProfit += coppie[j][1]
-
+                    if newProfit:
+                        profitTmp = 0
+                        profitTmp += coppie[j][1]
+                    else:
+                        profitTmp += coppie[j][1]
+                        newProfit = True
+                else:
+                    break
+            maxProfit += profitTmp        
+            
         return maxProfit
 
 
@@ -29,5 +38,12 @@ profit = [10, 20, 30, 40, 50]
 worker = [4, 5, 6, 7]
 
 solution = Solution()
-res1 = solution.maxProfitAssignment(difficulty, profit, worker)
-print(res1)
+print(solution.maxProfitAssignment(difficulty, profit, worker))
+
+
+diff2 = [85,47,57]
+prof2 = [24,66,99]
+work2 = [40,25,25]
+
+solution2 = Solution()
+print(solution2.maxProfitAssignment(diff2, prof2, work2))
