@@ -5,14 +5,15 @@ class Solution(object):
         coppie = list(zip(difficulty, profit))
         coppie.sort(key=lambda x : x[0])
 
-        worker.sort()
+        maxProfit = 0
+        # print(coppie)
 
-        '''
-        for i in range(len(coppie)):
-            for j in range(len(worker)):
-        '''
+        for i in range(len(worker)):
+            for j in range(len(coppie)):
+                if coppie[j][0] <= worker[i]:
+                    maxProfit += coppie[j][1]
 
-        return coppie, worker
+        return maxProfit
 
 
 def generaCoppie(difficulty, profit):
@@ -28,6 +29,5 @@ profit = [10, 20, 30, 40, 50]
 worker = [4, 5, 6, 7]
 
 solution = Solution()
-res1, res2 = solution.maxProfitAssignment(difficulty, profit, worker)
+res1 = solution.maxProfitAssignment(difficulty, profit, worker)
 print(res1)
-print(res2)
