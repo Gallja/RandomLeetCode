@@ -10,12 +10,16 @@ class Solution(object):
         for i in range(len(worker)):
             newProfit = False
             profitTmp = 0
+            profitPrec = 0
             for j in range(len(coppie)):
                 if coppie[j][0] <= worker[i]:
                     if newProfit:
-                        profitTmp = 0
-                        profitTmp += coppie[j][1]
+                        if coppie[j][1] > profitPrec:
+                            profitPrec = coppie[j][1]
+                            profitTmp = 0
+                            profitTmp += coppie[j][1]
                     else:
+                        profitPrec = coppie[j][1]
                         profitTmp += coppie[j][1]
                         newProfit = True
                 else:
@@ -38,3 +42,10 @@ work2 = [40,25,25]
 
 solution2 = Solution()
 print(solution2.maxProfitAssignment(diff2, prof2, work2))
+
+diff3 = [68,35,52,47,86]
+prof3 = [67,17,1,81,3]
+work3 = [92,10,85,84,82]
+
+solution3 = Solution()
+print(solution3.maxProfitAssignment(diff3, prof3, work3))
