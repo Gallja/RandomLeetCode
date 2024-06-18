@@ -1,3 +1,7 @@
+'''
+This solution generates "time limit exceeded" error.
+mostProfitWork2.py file contains my new version of problem's solution with minor time complexity.
+'''
 class Solution(object):
     def maxProfitAssignment(self, difficulty, profit, worker):
         worker.sort()
