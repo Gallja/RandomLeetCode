@@ -6,7 +6,7 @@ class Solution:
 
         bloomDay.sort()
 
-        if bloomDay[0] > k:
+        if bloomDay[0] < k:
             return -1
 
         for bouquet in bloomDay:
