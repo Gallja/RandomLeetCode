@@ -28,3 +28,6 @@ print(solution.maxDistance(position2, 2))
 
 position3 = [79, 74, 57, 22]
 print(solution.maxDistance(position3, 4))
+
+position4 = [79, 74, 57, 22]
+print(solution.maxDistance(position4, 4))
