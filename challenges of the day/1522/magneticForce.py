@@ -2,22 +2,34 @@ from typing import List
 
 class Solution:
     def maxDistance(self, position: List[int], m: int) -> int:
-        if m >= len(position):
-            return 0
-
-        if m == 2:
-            return (1 - position[len(position)-1]) * -1
+        position.sort()
         
-        ris = []
+        def ok(distance):
+            cnt, last_position = 1, position[0]
 
-        for i, n in enumerate(position):
-            if n % m == 0:
-                ris.append(i)
+            for pos in position[1:]:
+                if pos - last_position >= distance:
+                    cnt += 1
+                    last_position = pos
+                    
+                    if cnt == m:
+                        return True
+                    
+            return False
+        
+        left, right = 1, position[-1] - position[0]
+        best_distance = 0
+        
+        while left <= right:
+            mid = left + (right - left) // 2
 
-        if m == 3:
-            return int(ris[0]) + 1
-        else:    
-            return int(ris[0])
+            if ok(mid):
+                best_distance = mid
+                left = mid + 1
+            else:
+                right = mid - 1
+        
+        return best_distance
 
 solution = Solution()
 position = [1, 2, 3, 4, 7]
