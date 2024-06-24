@@ -17,10 +17,19 @@ class Solution:
                 return 1000
 
         numFinale = 0
+        numProvv = 0
+        i = 0
 
-        for i in s:
-            numFinale += switch(i)
-
+        while i < len(s) - 1:
+            if switch(s[i]) < switch(s[i + 1]):
+                numProvv = switch(s[i + 1]) - switch(s[i])
+                numFinale += numProvv
+                i += 1
+            else:
+                numFinale += switch(s[i])
+            
+            i += 1
+                
         return numFinale
     
 solution = Solution()    
