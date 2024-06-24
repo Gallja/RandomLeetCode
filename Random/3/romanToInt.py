@@ -16,7 +16,12 @@ class Solution:
             elif car == 'M':
                 return 1000
 
-        return 0
+        numFinale = 0
+
+        for i in s:
+            numFinale += switch(i)
+
+        return numFinale
     
 solution = Solution()    
 print(solution.romanToInt('III'))
