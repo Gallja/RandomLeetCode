@@ -18,6 +18,7 @@ class Solution:
 
         numFinale = 0
         numProvv = 0
+        
         i = 0
 
         while i < len(s) - 1:
@@ -30,6 +31,9 @@ class Solution:
             
             i += 1
                 
+        if switch(s[len(s)-2]) >= switch(s[len(s)-1]):
+            numFinale += switch(s[len(s)-1])
+
         return numFinale
     
 solution = Solution()    
