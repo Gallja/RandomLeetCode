@@ -24,4 +24,8 @@ class Solution:
         return numFinale
     
 solution = Solution()    
-print(solution.romanToInt('III'))
+print(solution.romanToInt('III')) # 3
+
+print(solution.romanToInt('LVIII')) # 58
+
+print(solution.romanToInt('MCMXCIV')) # 1994
